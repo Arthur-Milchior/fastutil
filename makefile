@@ -364,6 +364,19 @@ $(OPEN_CUSTOM_HASH_MAPS): drv/OpenCustomHashMap.drv; ./gencsource.sh $< $@ >$@
 
 CSOURCES += $(OPEN_CUSTOM_HASH_MAPS)
 
+
+PAIR := $(foreach k,$(TYPE), $(foreach v,$(TYPE), $(GEN_SRCDIR)/$(PKG_PATH)/$(PACKAGE_$(k))/$(k)$(v)Pair.c))
+$(PAIR): drv/Pair.drv; ./gencsource.sh $< $@ >$@
+
+CSOURCES += $(PAIR)
+
+
+MUTABLE_PAIR := $(foreach k,$(TYPE), $(foreach v,$(TYPE), $(GEN_SRCDIR)/$(PKG_PATH)/$(PACKAGE_$(k))/$(k)$(v)MutablePair.c))
+$(PAIR): drv/Pair.drv; ./gencsource.sh $< $@ >$@
+
+CSOURCES += $(MUTABLE_PAIR)
+
+
 LINKED_OPEN_CUSTOM_HASH_MAPS := $(foreach v,$(TYPE), $(GEN_SRCDIR)/$(PKG_PATH)/objects/Object2$(v)LinkedOpenCustomHashMap.c)
 $(LINKED_OPEN_CUSTOM_HASH_MAPS): drv/LinkedOpenCustomHashMap.drv; ./gencsource.sh $< $@ >$@
 

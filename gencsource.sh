@@ -294,20 +294,24 @@ fi)\
 "#define KEY_VALUE_GENERIC <K,V>\n"\
 "#define KEY_VALUE_GENERIC_DIAMOND <>\n"\
 "#define KEY_VALUE_EXTENDS_GENERIC <? extends K, ? extends V>\n"\
+"#define KEY_VALUE_GENERIC_WILDCARD <?, ?>\n"\
 "#else // KEYS_REFERENCE, VALUES_PRIMITIVE\n" \
 "#define KEY_VALUE_GENERIC <K>\n"\
 "#define KEY_VALUE_GENERIC_DIAMOND <>\n"\
 "#define KEY_VALUE_EXTENDS_GENERIC <? extends K>\n"\
+"#define KEY_VALUE_GENERIC_WILDCARD <?>\n"\
 "#endif\n"\
 "#else\n"\
 "#if VALUES_REFERENCE // and KEYS_PRIMITIVE\n" \
 "#define KEY_VALUE_GENERIC <V>\n"\
 "#define KEY_VALUE_GENERIC_DIAMOND <>\n"\
 "#define KEY_VALUE_EXTENDS_GENERIC <? extends V>\n"\
+"#define KEY_VALUE_GENERIC_WILDCARD <?>\n"\
 "#else // KEYS_PRIMITIVE and VALUES_PRIMITIVE\n" \
 "#define KEY_VALUE_GENERIC\n"\
 "#define KEY_VALUE_GENERIC_DIAMOND\n"\
 "#define KEY_VALUE_EXTENDS_GENERIC\n"\
+"#define KEY_VALUE_GENERIC_WILDCARD\n"\
 "#endif\n"\
 "#endif\n"\
 \
