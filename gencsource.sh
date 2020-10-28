@@ -232,10 +232,10 @@ fi)\
 "#define SUPPRESS_WARNINGS_KEY_UNCHECKED_RAWTYPES @SuppressWarnings({\"unchecked\",\"rawtypes\"})\n"\
 "#if defined(Custom)\n"\
 "#define SUPPRESS_WARNINGS_CUSTOM_KEY_UNCHECKED @SuppressWarnings(\"unchecked\")\n"\
-"#else\n"\
+"#else // not Custom undefined\n" \
 "#define SUPPRESS_WARNINGS_CUSTOM_KEY_UNCHECKED\n"\
-"#endif\n"\
-"#else\n"\
+"#endif // independant of Custom\n" \
+"#else // KEYS_PRIMITIVE\n" \
 "#define KEY_GENERIC_CLASS KEY_CLASS\n"\
 "#define KEY_GENERIC_TYPE KEY_TYPE\n"\
 "#define KEY_GENERIC_CLASS_WIDENED KEY_CLASS_WIDENED\n"\
@@ -255,7 +255,7 @@ fi)\
 "#define SUPPRESS_WARNINGS_KEY_RAWTYPES\n"\
 "#define SUPPRESS_WARNINGS_KEY_UNCHECKED_RAWTYPES\n"\
 "#define SUPPRESS_WARNINGS_CUSTOM_KEY_UNCHECKED\n"\
-"#endif\n"\
+"#endif // Independant of kind of key\n" \
 \
 "#if VALUES_REFERENCE\n"\
 "#define VALUE_GENERIC_CLASS V\n"\
@@ -272,7 +272,7 @@ fi)\
 "#define DEPRECATED_IF_VALUES_PRIMITIVE\n"\
 "#define SUPPRESS_WARNINGS_VALUE_UNCHECKED @SuppressWarnings(\"unchecked\")\n"\
 "#define SUPPRESS_WARNINGS_VALUE_RAWTYPES @SuppressWarnings(\"rawtypes\")\n"\
-"#else\n"\
+"#else // VALUES_PRIMITIVE\n" \
 "#define VALUE_GENERIC_CLASS VALUE_CLASS\n"\
 "#define VALUE_GENERIC_TYPE VALUE_TYPE\n"\
 "#define VALUE_GENERIC_CLASS_WIDENED VALUE_CLASS_WIDENED\n"\
@@ -287,24 +287,24 @@ fi)\
 "#define DEPRECATED_IF_VALUES_PRIMITIVE @Deprecated\n"\
 "#define SUPPRESS_WARNINGS_VALUE_UNCHECKED\n"\
 "#define SUPPRESS_WARNINGS_VALUE_RAWTYPES\n"\
-"#endif\n"\
+"#endif // Independant of value \n" \
 \
 "#if KEYS_REFERENCE\n"\
 "#if VALUES_REFERENCE\n"\
 "#define KEY_VALUE_GENERIC <K,V>\n"\
 "#define KEY_VALUE_GENERIC_DIAMOND <>\n"\
 "#define KEY_VALUE_EXTENDS_GENERIC <? extends K, ? extends V>\n"\
-"#else\n"\
+"#else // KEYS_REFERENCE, VALUES_PRIMITIVE\n" \
 "#define KEY_VALUE_GENERIC <K>\n"\
 "#define KEY_VALUE_GENERIC_DIAMOND <>\n"\
 "#define KEY_VALUE_EXTENDS_GENERIC <? extends K>\n"\
 "#endif\n"\
 "#else\n"\
-"#if VALUES_REFERENCE\n"\
+"#if VALUES_REFERENCE // and KEYS_PRIMITIVE\n" \
 "#define KEY_VALUE_GENERIC <V>\n"\
 "#define KEY_VALUE_GENERIC_DIAMOND <>\n"\
 "#define KEY_VALUE_EXTENDS_GENERIC <? extends V>\n"\
-"#else\n"\
+"#else // KEYS_PRIMITIVE and VALUES_PRIMITIVE\n" \
 "#define KEY_VALUE_GENERIC\n"\
 "#define KEY_VALUE_GENERIC_DIAMOND\n"\
 "#define KEY_VALUE_EXTENDS_GENERIC\n"\
@@ -315,7 +315,7 @@ fi)\
 "#define SUPPRESS_WARNINGS_KEY_VALUE_UNCHECKED @SuppressWarnings(\"unchecked\")\n"\
 "#define SUPPRESS_WARNINGS_KEY_VALUE_RAWTYPES @SuppressWarnings(\"rawtypes\")\n"\
 "#define SUPPRESS_WARNINGS_KEY_VALUE_UNCHECKED_RAWTYPES @SuppressWarnings({\"rawtypes\", \"unchecked\"})\n"\
-"#else\n"\
+"#else // KEYS_PRIMITIVE && VALUES_PRIMITIVE\n" \
 "#define SUPPRESS_WARNINGS_KEY_VALUE_UNCHECKED\n"\
 "#define SUPPRESS_WARNINGS_KEY_VALUE_RAWTYPES\n"\
 "#define SUPPRESS_WARNINGS_KEY_VALUE_UNCHECKED_RAWTYPES\n"\
@@ -343,7 +343,7 @@ fi)\
 "#if KEYS_REFERENCE\n"\
 "#define STD_SORTED_MAP SortedMap\n"\
 "#define STRATEGY Strategy\n"\
-"#else\n"\
+"#else // KEYS_GENERIC\n" \
 "#define STD_SORTED_MAP ${TYPE_CAP[$k]}2${TYPE_CAP[$v]}SortedMap\n"\
 "#define STRATEGY PACKAGE.${TYPE_CAP[$k]}Hash.Strategy\n"\
 "#endif\n"\
@@ -568,7 +568,7 @@ fi)\
 "#define COMPUTE compute${TYPE_STD[$v]}\n"\
 "#define COMPUTE_IF_PRESENT compute${TYPE_STD[$v]}IfPresent\n"\
 "#define MERGE merge${TYPE_STD[$v]}\n"\
-"#else\n"\
+"#else  // # KEYS_VALUES \n"\
 "#define GET_VALUE get\n"\
 "#define REMOVE_VALUE remove\n"\
 "#define COMPUTE_IF_ABSENT_JDK computeIfAbsent\n"\
@@ -778,7 +778,7 @@ fi)\
 \
 "#define VALUE_NULL (null)\n"\
 \
-"#else\n"\
+"#else // VALUES_PRIMITIVE \n" \
 \
 \
 "/* Primitive-type-only definitions (values) */\n"\
